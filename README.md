@@ -1,3 +1,13 @@
+# Augmented Retriever LLM
+
+
+Need download the data from:
+https://foxxdusa-my.sharepoint.com/:u:/g/personal/yongming_qin_foxxusa_com/EWDua7R3HB5DsmzS4IAR_twBBxMiJOyig-ByZlMLK1F_Wg?e=jToobR
+
+
+
+# Explaination
+
 I'll help you analyze the contents of this folder. Let me start by listing the directory contents.
 
 
