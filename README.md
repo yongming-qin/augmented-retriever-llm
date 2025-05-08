@@ -81,3 +81,68 @@ Would you like me to dive deeper into any particular aspect of the project?
 
 ----
 
+I'll help you understand how to run inference tests with this codebase. Let me first check the main execution file to understand the testing parameters and requirements.
+
+
+Read file: run_gpt3.py
+Based on the code analysis, I can help you run some inference tests. The code is set up to work with GPT-3/4 through Azure's API. Here's how you can run a simple test:
+
+1. First, you'll need to set up your environment. Let me check if there's a requirements file:
+
+
+Ran tool
+Let me check the pyproject.toml for dependencies:
+
+
+Read file: pyproject.toml
+Here's how you can run a simple inference test:
+
+1. First, you'll need to install the required dependencies. Based on the imports in the code, you'll need:
+```bash
+pip install torch numpy openai httpx sentence-transformers scikit-learn
+```
+
+2. You'll need to set up your Azure OpenAI API credentials. The code is already configured to use Azure's GPT-4 API, but you'll need to update the credentials in `run_gpt3.py`. Look for these variables and update them with your credentials:
+```python
+OPENAI_ENDPOINT = "your-endpoint"
+OPENAI_DEPLOYMENT_MODEL = "your-deployment-model"
+OPENAI_AZURE_API_VERSION = "2023-12-01-preview"
+APIM_KEY = "your-api-key"
+```
+
+3. To run a simple inference test, you can use the following command:
+```bash
+python run_gpt3.py \
+    --data_root_test path/to/your/test/data.json \
+    --engine gpt4 \
+    --test_number 5 \
+    --shot_number 2 \
+    --prompt_format Q-A \
+    --temperature 0.0 \
+    --max_tokens 512
+```
+
+The key parameters for inference are:
+- `--data_root_test`: Path to your test data file
+- `--engine`: The model to use (gpt4, text-davinci-002, or ada)
+- `--test_number`: Number of test examples to run (set to a small number like 5 for testing)
+- `--shot_number`: Number of few-shot examples to include
+- `--prompt_format`: Format of the prompt (Q-A is question-answer format)
+- `--temperature`: Controls randomness (0.0 for deterministic outputs)
+- `--max_tokens`: Maximum length of the generated response
+
+4. The code supports several datasets out of the box:
+- MATH problems
+- MedQA
+- Various NLP tasks (squad, tweet_eval, etc.)
+
+For a quick test, you could use a small sample of any of these datasets. The code will automatically handle the data loading and formatting.
+
+5. The results will be saved in the `results` directory (specified by `--output_root`) with a filename that includes your experiment label, test split, prompt format, and shot number.
+
+Would you like me to:
+1. Help you set up a specific test case with a particular dataset?
+2. Show you how to modify the code for a custom test case?
+3. Explain more about any of the parameters or components?
+
+Also, I notice that the code is set up to use Azure's GPT-4 API. Do you have access to Azure's OpenAI service, or would you prefer to use a different API endpoint?
