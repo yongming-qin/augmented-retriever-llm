@@ -22,9 +22,13 @@ wheels/
 
 # data
 cluster_results/
+data/
 
 # logs
 logs/
 
 # checkpoints
 checkpoints/
+
+# openai api key, langchain api key
+.env
