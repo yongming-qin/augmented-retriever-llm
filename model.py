@@ -35,7 +35,7 @@ class policy_network(nn.Module):
             self.linear = None
 
     def forward(self, input_list, bert_forward=True, linear_forward=True):
-        if bert_forward:
+        if bert_forward: 
             input = self.tokenizer(input_list, truncation=True, padding=True, return_tensors="pt").to(self.model.device)
             # print(f"input: {input}")
             output = self.model(**input, output_hidden_states=True)
