@@ -143,7 +143,7 @@ def load_data(args):
 
     # Process candidate examples
     print(f"original cand set number {len(train_pids)}")
-    if args.cand_ckpt:
+    if args.cand_ckpt:  
         # Load candidate IDs from checkpoint
         cand_pids = torch.load(args.cand_ckpt)
         if 'MATH' in args.data_root_test:
