@@ -28,6 +28,11 @@ import torch.nn.functional as F
 import openai
 import os
 
+from dotenv import load_dotenv
+from together import Together
+
+
+
 # Import custom modules
 
 
@@ -56,7 +61,7 @@ KILT dataset:
     
 """
 
-def load_data(path):
+def load_data_kilt(path):
     """
     Load and process the KILT Natural Questions dataset.
     Returns a list of dictionaries containing question-answer pairs with provenance information.
@@ -82,7 +87,130 @@ def load_data(path):
     return data
 
 
+def load_data_pubmedqa(path):
+    """
+    Load and process the PubMedQA dataset.
+    Returns a list of dictionaries containing question-answer pairs.
+    """
+    
+    problems_train = json.load(open(path, 'r'))
+    print(f"\nLoaded {len(problems_train)} samples from PubMedQA dataset")
+    
+    problmes_id = list(problems_train.keys())
+    
+    return problems_train, problmes_id
+
+
+
+
+openai_api_key = os.getenv('OPENAI_API_KEY')
+def process_with_gpt4(question):
+    """
+    Process a question using GPT-4 API.
+    """
+    client = openai.OpenAI(api_key=openai_api_key)
+    
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4.1-nano",
+            messages=[
+                {"role": "system", "content": "You are a helpful medical research assistant. Answer the following medical question based on your knowledge."},
+                {"role": "user", "content": question}
+            ],
+            temperature=0.7,
+            max_tokens=500
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"Error processing question: {e}")
+        return None
+
+together_api_key = os.getenv('TOGETHER_API_KEY')
+def process_with_together(question):
+    """
+    Process a question using Together.ai API.
+    """
+    client = Together(api_key=together_api_key)
+    try:
+        response = client.chat.completions.create(
+            model="meta-llama/Llama-3.2-3B-Instruct-Turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful medical research assistant. Answer the following medical question based on your knowledge."},
+                {"role": "user", "content": question}
+            ],
+            temperature=0.7,
+            max_tokens=500
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"Error processing question: {e}")
+        return None
+    
+
+
+
+def check_hallucination(gpt4_answer, original_answer):
+    """
+    Use openai to check if the answer from GPT-4 is hallucinated.
+    """
+    client = openai.OpenAI(api_key=openai_api_key)
+    response = client.chat.completions.create(
+        model="gpt-4.1-nano",
+        messages=[{"role": "user", "content": f"The question is: {question}. Is the answer from llm hallucinated in short answer? The llm answer is: {gpt4_answer}. The original answer is: {original_answer}."}],
+        temperature=0.7,
+        max_tokens=500
+    )
+    return response.choices[0].message.content
+
+
+def process_with_fewshot(question, problems_id, problems_train, n=2):
+    """
+    Process a question using few-shot prompting.
+    """
+    prompt = f"The question is: {question}. The original answer is: {problems_train[problems_id[i]]['LONG_ANSWER']}. Please answer the question based on the original answer."
+
+
 if __name__ == '__main__':
-    load_data('/home/yq/ssd/hallucination/kilt-meta/nq-train-kilt.jsonl')
+    # load_data_kilt('/home/yq/ssd/hallucination/kilt-meta/nq-train-kilt.jsonl')
+    
+    # path_train_pubmed = '/home/yq/ssd/hallucination/augmented-retriever-llm/cluster_results/pubmed/pqaa_train_set.json'
+    path_train_pubmed = '/home/yq/ssd/hallucination/augmented-retriever-llm/cluster_results/pubmed/pqal_fold0/train_set.json'
+    problems_train, problems_id = load_data_pubmedqa(path_train_pubmed)
+    
+    # Get OpenAI API key from .env file
 
+    load_dotenv()
+    
+    # Process a few sample questions
+    print("\nAnswering questions with LLM and checking hallucination with OpenAI.")
+    question_list = [3, 368]
+    for i in question_list:
+        question = problems_train[problems_id[i]]['QUESTION']
+        # llm_answer = process_with_gpt4(question)
+        llm_answer = process_with_together(question)
+        # Build the output text
+        output_text = f"\nQuestion {i}: {question}\n\n"
+        output_text += "----------------------------------------------"
+        output_text += f"LLM Answer: {llm_answer}\n\n"
+        output_text += "----------------------------------------------"
+        output_text += f"Original Answer: {problems_train[problems_id[i]]['LONG_ANSWER']}\n\n"
+        output_text += "----------------------------------------------"
+        hallucination_check = check_hallucination(llm_answer, problems_train[problems_id[i]]['LONG_ANSWER'])
+        output_text += f"Hallucination Check: {hallucination_check}\n\n"
+        output_text += "----------------------------------------------"
+        our_prompt = prompt_with_fewshot(question, problems_id, problems_train, n=2)
+        our_answer = process_with_together(our_prompt)
+        output_text += f"Fewshot Answer: {our_answer}\n\n"
+        output_text += "----------------------------------------------"
+        output_text += f"==============================================\n\n"
+        
+        # Write to file and print to console
+        with open('result.txt', 'a') as f:
+            f.write(output_text)
+            f.flush() # Ensure immediate write to disk
+            
+        print(output_text)
+        
+        time.sleep(1)  # Add a small delay to avoid rate limiting
 
+    
