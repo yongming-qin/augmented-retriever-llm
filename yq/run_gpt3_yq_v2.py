@@ -8,6 +8,7 @@ Key Components:
 v2:
 test with basic pipeline. just retriever and answer.
 
+renamed to main.py
 
 """
 

@@ -418,7 +418,7 @@ if __name__ == '__main__':
     print("===========")
     cand_examples = []
     for pid in cand_pids:
-        example = create_example_from_pid(pid, problems, args, test=True)
+        example = create_example_from_pid(pid,z problems, args, test=True)
         cand_examples.append(example)
 
     # Handle training checkpoints
@@ -629,6 +629,7 @@ if __name__ == '__main__':
                             shot_pids.append(cand_pids[cid])
                     else:
                         if scores[cid] > score_th[cid]:
+                            # scores[cid] > (args.score_th - val_mean) + scores
                             shot_pids.append(cand_pids[cid])
 
                 shot_len_avg.append(len(shot_pids))

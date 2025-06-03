@@ -251,7 +251,7 @@ def test_policy_network():
     scores = model(ctxt_list, cands_list).cpu().detach().numpy()
     
     # Print results
-    print(f"scores: {scores}")
+    print(f"scores: {scores}, {scores.shape=}")
     for i, test_pid in enumerate(test_pids):
         print(f"test_problem: {problems[test_pid]}")
         scores = scores[i, :].tolist()
