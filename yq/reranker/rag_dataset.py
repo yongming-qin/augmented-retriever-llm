@@ -26,8 +26,8 @@ self.bm25 is a BM25Okapi object.
 self.bm25_corpus is used for BM25 retrieval. It is a list of strings, each string is a context.
 """
 class PubmedqaDataset:
-    def __init__(self):
-        raw_data = json.load(open("/home/yq/ssd/hallucination/augmented-retriever-llm/cluster_results/pubmed/pqal_fold0/train_set.json", 'r'))
+    def __init__(self, raw_data_path):
+        raw_data = json.load(open(raw_data_path, 'r'))
         print(f"\nLoaded {len(raw_data)} samples from PubMedQA dataset")
         
         self.data = {}
@@ -98,9 +98,11 @@ class CompareRag:
         
         ## load the model
         # lm_model = "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"
+        # lm_model = "meta-llama/Llama-3.2-3B-Instruct-Turbo"
+        # lm_model = "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
         # lm_model = "claude-3-5-haiku-20241022"
         # "gpt-4.1-nano"
-        lm_model = "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
+        lm_model = "meta-llama/Llama-3.2-3B-Instruct-Turbo"
         # lm_model = "mistralai/Mistral-7B-Instruct-v0.3"
         lm_hallucination_model = "gpt-4.1-nano"
         
@@ -120,8 +122,11 @@ class CompareRag:
         return response
 
     def gt_answer(self, query, context):
-        full_query = self.prompt_query(query, context)
-        return self.no_rag_answer(full_query)
+        if context == "NO CONTEXT IS NEEDED":
+            return self.no_rag_answer(query)
+        else:
+            full_query = self.prompt_query(query, context)
+            return self.no_rag_answer(full_query)
 
     def bm25_answer(self, question, bm25, bm25_corpus, top_k=3):
         retrieved = bm25.get_top_n(question.split(), bm25_corpus, n=top_k) # is a list of list of strings
@@ -172,7 +177,7 @@ class CompareRag:
         Score: 90"""
         # Extract the score using regex
         match = re.search(r"Score:\s*(\d+)", check_hallucination_response)
-        score = int(match.group(1)) if match else 50 #YQ: 50 is the default score.
+        score = int(match.group(1)) if match else 49 #YQ: 49 is the default score.
         return score
     
     # === Test the RAG system ===
@@ -191,23 +196,23 @@ class CompareRag:
             print(f"\nQuestion: {question}\n")
             
             no_rag_resp = self.no_rag_answer(question)
-            no_rag_check = self.check_hallucination(question, no_rag_resp, gt_answer)
-            print(f"Hallucination (No-RAG): {no_rag_check}")
+            no_rag_reward = self.compute_reward(question, no_rag_resp, gt_answer)
+            print(f"Hallucination (No-RAG): {no_rag_reward}")
             print("-"*50)
             
             rag_resp = self.bm25_answer(question, bm25, bm25_corpus)
-            rag_check = self.check_hallucination(question, rag_resp, gt_answer)
-            print(f"Hallucination (RAG): {rag_check}")
+            rag_reward = self.compute_reward(question, rag_resp, gt_answer)
+            print(f"Hallucination (RAG): {rag_reward}")
             print("-"*50)
             
             gt_resp = self.gt_answer(question, gt_context)
-            gt_check = self.check_hallucination(question, gt_resp, gt_answer)
-            print(f"Hallucination (GT): {gt_check}")
+            gt_reward = self.compute_reward(question, gt_resp, gt_answer)
+            print(f"Hallucination (GT): {gt_reward}")
             
             results[key] = {
-                "no_rag_check": no_rag_check,
-                "rag_check": rag_check,
-                "gt_check": gt_check,
+                "no_rag_reward": no_rag_reward,
+                "rag_reward": rag_reward,
+                "gt_reward": gt_reward,
             }
         
         with open("results.json", "w") as f:

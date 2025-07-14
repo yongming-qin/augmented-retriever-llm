@@ -1,0 +1,130 @@
+
+=== Model: bge-base-en-v1.5 ===
+
+Query: [VERSION:1.2] how to add one to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.813
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.768
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.773
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.694
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.665
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.651
+
+Query: [VERSION:2.0] how to multiply two to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.799
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.809
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.760
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.691
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.676
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.651
+
+Query: [VERSION:3.0] how to subtract one from a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.793
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.763
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.815
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.697
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.682
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.682
+
+=== Model: miniLM ===
+
+Query: [VERSION:1.2] how to add one to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.620
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.518
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.545
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.500
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.422
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.436
+
+Query: [VERSION:2.0] how to multiply two to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.522
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.619
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.521
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.447
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.457
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.426
+
+Query: [VERSION:3.0] how to subtract one from a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.551
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.525
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.597
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.495
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.496
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.529
+
+=== Model: mpnet ===
+
+Query: [VERSION:1.2] how to add one to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.663
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.530
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.573
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.534
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.476
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.446
+
+Query: [VERSION:2.0] how to multiply two to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.528
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.726
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.542
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.449
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.520
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.436
+
+Query: [VERSION:3.0] how to subtract one from a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.551
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.497
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.668
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.516
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.510
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.567
+
+=== Model: OpenAI-text-embedding-3-small ===
+
+Query: [VERSION:1.2] how to add one to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.612
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.547
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.526
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.481
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.438
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.402
+
+Query: [VERSION:2.0] how to multiply two to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.552
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.574
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.495
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.452
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.463
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.391
+
+Query: [VERSION:3.0] how to subtract one from a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.524
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.503
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.601
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.447
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.441
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.474
+
+=== Model: OpenAI-text-embedding-3-large ===
+
+Query: [VERSION:1.2] how to add one to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.561
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.481
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.504
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.454
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.385
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.375
+
+Query: [VERSION:2.0] how to multiply two to a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.466
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.576
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.435
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.398
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.467
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.346
+
+Query: [VERSION:3.0] how to subtract one from a number using foo function 
+  Similarity to '[VERSION:1.0] def foo(x): return x + 1': 0.454
+  Similarity to '[VERSION:2.1] def foo(x): return x * 2': 0.396
+  Similarity to '[VERSION:3.0] def foo(x): return x - 1': 0.584
+  Similarity to '[VERSION:1.2] def boo(x): return x + 10': 0.364
+  Similarity to '[VERSION:0.1] def boo(x): return x * 20': 0.335
+  Similarity to '[VERSION:0.3] def boo(x): return x - 10': 0.433

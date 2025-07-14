@@ -1,0 +1,78 @@
+
+=== Model: bge-base-en-v1.5 ===
+
+Query: [DATE:2020-11-01] how to use foo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.828
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.825
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.806
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.698
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.688
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.678
+
+Query: [DATE:2022-02-01] how to use boo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.674
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.674
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.669
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.821
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.835
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.819
+
+Query: [DATE:2025-01-01] how to increment a number using foo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.815
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.786
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.792
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.705
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.689
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.685
+
+=== Model: miniLM ===
+
+Query: [DATE:2020-11-01] how to use foo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.768
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.749
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.768
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.679
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.655
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.682
+
+Query: [DATE:2022-02-01] how to use boo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.546
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.609
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.592
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.758
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.796
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.806
+
+Query: [DATE:2025-01-01] how to increment a number using foo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.715
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.634
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.682
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.612
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.577
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.595
+
+=== Model: OpenAI-text-embedding-3-small ===
+
+Query: [DATE:2020-11-01] how to use foo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.552
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.553
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.535
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.431
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.442
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.409
+
+Query: [DATE:2022-02-01] how to use boo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.342
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.362
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.340
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.612
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.634
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.607
+
+Query: [DATE:2025-01-01] how to increment a number using foo function
+  Similarity to '[DATE:2020-01-01] def foo(x): return x + 1': 0.637
+  Similarity to '[DATE:2022-01-01] def foo(x): return x * 2': 0.570
+  Similarity to '[DATE:2024-01-01] def foo(x): return x - 1': 0.578
+  Similarity to '[DATE:2020-01-01] def boo(x): return x + 10': 0.492
+  Similarity to '[DATE:2022-01-01] def boo(x): return x * 20': 0.482
+  Similarity to '[DATE:2024-01-01] def boo(x): return x - 10': 0.443
